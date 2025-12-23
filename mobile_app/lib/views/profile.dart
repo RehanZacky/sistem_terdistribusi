@@ -83,19 +83,19 @@ class Profile extends StatelessWidget {
           ),
           const Gap(35),
           CustomListTile(
-              icon: IconlyBold.Profile,
+              icon: IconlyBold.profile,
               color: const Color(0xFFC76CD9),
               title: 'Information', context: context),
           CustomListTile(
-              icon: IconlyBold.Shield_Done,
+              icon: IconlyBold.shieldDone,
               color: const Color(0xFF229e76),
               title: 'Security', context: context),
           CustomListTile(
-              icon: IconlyBold.Message,
+              icon: IconlyBold.message,
               color: const Color(0xFFe17a0a),
               title: 'Contact us', context: context),
           CustomListTile(
-              icon: IconlyBold.Document,
+              icon: IconlyBold.document,
               color: const Color(0xFF064c6d),
               title: 'Support', context: context),
           CustomListTile(

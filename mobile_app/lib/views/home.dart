@@ -40,7 +40,7 @@ class Home extends StatelessWidget {
                     children: [
                       Text('Hi Tino',
                           style: TextStyle(
-                              color: Colors.white.withOpacity(0.7), fontSize: 16)),
+                              color: Colors.white.withValues(alpha: 0.7), fontSize: 16)),
                       const Gap(3),
                       const Text('Welcome back',
                           style: TextStyle(
@@ -56,7 +56,7 @@ class Home extends StatelessWidget {
                         shape: BoxShape.circle,
                         color: Colors.white,
                       ),
-                      child: Icon(IconlyBold.Notification, color: Styles.accentColor,),
+                      child: Icon(IconlyBold.notification, color: Styles.accentColor,),
                     ),
                   )
                 ],
@@ -89,7 +89,7 @@ class Home extends StatelessWidget {
                             const Gap(20),
                             Text('CARD NUMBER',
                                 style: TextStyle(
-                                    color: Colors.white.withOpacity(0.5),
+                                    color: Colors.white.withValues(alpha: 0.5),
                                     fontSize: 12)),
                             const Gap(5),
                             const Text('3829 4820 4629 5025',
@@ -152,7 +152,7 @@ class Home extends StatelessWidget {
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: item['color'].withOpacity(0.15),
+                          color: item['color'].withValues(alpha: 0.15),
                         ),
                         child: Icon(item['icon'], color: item['color']),
                       ),
@@ -204,7 +204,7 @@ class Home extends StatelessWidget {
                             boxShadow: [
                               BoxShadow(
                                 offset: const Offset(0, 1),
-                                color: Colors.white.withOpacity(0.1),
+                                color: Colors.white.withValues(alpha: 0.1),
                                 blurRadius: 2,
                                 spreadRadius: 1,
                               )

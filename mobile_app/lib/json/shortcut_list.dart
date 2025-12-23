@@ -5,35 +5,35 @@ import 'package:flutter_banking_app/views/send_money.dart';
 List shortcutList = [
   {
     'color': const Color(0xFF026EF4),
-    'icon': IconlyBold.Download,
+    'icon': IconlyBold.download,
   },
   {
     'color': const Color(0xFFFB6A4B),
-    'icon': IconlyBold.Upload,
+    'icon': IconlyBold.upload,
     'route': const SendMoney(),
   },
   {
     'color': const Color(0xFF2BB33A),
-    'icon': IconlyBold.Wallet,
+    'icon': IconlyBold.wallet,
   },
   {
     'color': const Color(0xFFAF52C1),
-    'icon': IconlyBold.Category,
+    'icon': IconlyBold.category,
   },
 ];
 
 List profilesShortcutList = [
   {
     'color': const Color(0xFFe2a935),
-    'icon': IconlyBold.Chart,
+    'icon': IconlyBold.chart,
   },
   {
     'color': const Color(0xFF2290b8),
-    'icon': IconlyBold.Notification,
+    'icon': IconlyBold.notification,
   },
   {
     'color': const Color(0xFF6bcde8),
-    'icon': IconlyBold.Setting,
+    'icon': IconlyBold.setting,
   },
   {
     'color': const Color(0xFF6b41dc),

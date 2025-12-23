@@ -37,7 +37,7 @@ class Repository {
 
   static Color fieldColor(BuildContext context) {
     final vm = context.watch<ViewModel>();
-    return vm.isDark == true ? Styles.whiteColor.withOpacity(0.5) : Colors.grey;
+    return vm.isDark == true ? Styles.whiteColor.withValues(alpha: 0.5) : Colors.grey;
   }
 
   static Color headerColor(BuildContext context) {
@@ -52,12 +52,12 @@ class Repository {
 
   static Color subTextColor(BuildContext context) {
     final vm = context.watch<ViewModel>();
-    return vm.isDark == true ? Styles.whiteColor.withOpacity(0.7) : Styles.primaryColor.withOpacity(0.7);
+    return vm.isDark == true ? Styles.whiteColor.withValues(alpha: 0.7) : Styles.primaryColor.withValues(alpha: 0.7);
   }
 
   static Color iconColor(BuildContext context) {
     final vm = context.watch<ViewModel>();
-    return vm.isDark == true ? Styles.whiteColor.withOpacity(0.2) : Styles.greyColor;
+    return vm.isDark == true ? Styles.whiteColor.withValues(alpha: 0.2) : Styles.greyColor;
   }
 
   static Color headerColor2(BuildContext context) {

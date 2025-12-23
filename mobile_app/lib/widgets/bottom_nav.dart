@@ -44,22 +44,22 @@ class _BottomNavState extends State<BottomNav> {
         selectedLabelStyle: TextStyle(fontSize: 20, color: Styles.primaryColor),
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Repository.selectedItemColor(context),
-        unselectedItemColor: Colors.grey.withOpacity(0.7),
+        unselectedItemColor: Colors.grey.withValues(alpha: 0.7),
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(IconlyBold.Home),
+            icon: Icon(IconlyBold.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(IconlyBold.Wallet),
+            icon: Icon(IconlyBold.wallet),
             label: 'Wallet',
           ),
           BottomNavigationBarItem(
-            icon: Icon(IconlyBold.Chart),
+            icon: Icon(IconlyBold.chart),
             label: 'Stats',
           ),
           BottomNavigationBarItem(
-            icon: Icon(IconlyBold.Profile),
+            icon: Icon(IconlyBold.profile),
             label: 'Profile',
           ),
         ],

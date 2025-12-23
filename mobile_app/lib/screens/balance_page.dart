@@ -132,7 +132,7 @@ class _BalancePageState extends State<BalancePage> {
                                       Container(
                                         padding: const EdgeInsets.all(12),
                                         decoration: BoxDecoration(
-                                          color: Colors.blueAccent.withOpacity(0.2),
+                                          color: Colors.blueAccent.withValues(alpha: 0.2),
                                           borderRadius: BorderRadius.circular(12),
                                         ),
                                         child: const Icon(

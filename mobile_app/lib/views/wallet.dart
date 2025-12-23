@@ -47,7 +47,7 @@ class Wallet extends StatelessWidget {
               ),
               CircleAvatar(
                 backgroundColor: Repository.accentColor(context),
-                child: Icon(IconlyBold.Scan, color: Repository.textColor(context)),
+                child: Icon(IconlyBold.scan, color: Repository.textColor(context)),
                 radius: 23,
               )
             ],
@@ -80,7 +80,7 @@ class Wallet extends StatelessWidget {
                         const Gap(20),
                         Text('CARD NUMBER',
                             style: TextStyle(
-                                color: Colors.white.withOpacity(0.5),
+                                color: Colors.white.withValues(alpha: 0.5),
                                 fontSize: 12)),
                         const Gap(5),
                         const Text('3829 4820 4629 5025',
@@ -149,7 +149,7 @@ class Wallet extends StatelessWidget {
                         const Gap(20),
                         Text('CARD NUMBER',
                             style: TextStyle(
-                                color: Styles.primaryColor.withOpacity(0.7),
+                                color: Styles.primaryColor.withValues(alpha: 0.7),
                                 fontSize: 12)),
                         const Gap(5),
                         Text('3829 4820 4629 5025',
@@ -181,7 +181,7 @@ class Wallet extends StatelessWidget {
                         Text('VALID',
                             style: TextStyle(
                                 fontSize: 12,
-                                color: Colors.white.withOpacity(0.5))),
+                                color: Colors.white.withValues(alpha: 0.5))),
                         const Gap(5),
                         const Text('06/22',
                             style:
@@ -221,7 +221,7 @@ class Wallet extends StatelessWidget {
                         const Gap(20),
                         Text('CARD NUMBER',
                             style: TextStyle(
-                                color: Colors.white.withOpacity(0.5),
+                                color: Colors.white.withValues(alpha: 0.5),
                                 fontSize: 12)),
                         const Gap(5),
                         const Text('3829 4820 4629 5025',

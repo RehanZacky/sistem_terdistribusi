@@ -46,14 +46,14 @@ class DefaultTextField extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(_title, style: TextStyle(color: Colors.white.withOpacity(0.7), fontWeight: FontWeight.w500, fontSize: 15),),
+        Text(_title, style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontWeight: FontWeight.w500, fontSize: 15),),
         Gap(getProportionateScreenHeight(5)),
         TextFormField(
           obscureText: obscure??false,
           enabled: enabled,
           focusNode: focusNode,
           keyboardType: keyboardType,
-          cursorColor: Colors.white.withOpacity(0.5),
+          cursorColor: Colors.white.withValues(alpha: 0.5),
           textInputAction: textInputAction ?? TextInputAction.next,
           onFieldSubmitted: onFieldSubmitted,
           validator: (value) {

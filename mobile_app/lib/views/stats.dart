@@ -141,7 +141,7 @@ class _StatsState extends State<Stats> {
                                 style: TextStyle(color: Colors.white)),
                             const Gap(8),
                             Icon(CupertinoIcons.chevron_down,
-                                color: Colors.white.withOpacity(0.8), size: 17)
+                                color: Colors.white.withValues(alpha: 0.8), size: 17)
                           ],
                         ),
                       ),
@@ -204,7 +204,7 @@ class _StatsState extends State<Stats> {
                         boxShadow: [
                           BoxShadow(
                             offset: const Offset(0, 1),
-                            color: Colors.white.withOpacity(0.1),
+                            color: Colors.white.withValues(alpha: 0.1),
                             blurRadius: 2,
                             spreadRadius: 1,
                           )

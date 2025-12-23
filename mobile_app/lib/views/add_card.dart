@@ -131,7 +131,7 @@ class _AddCardState extends State<AddCard> {
                         color: selectedCard ==
                                 paymentCardsList.indexOf(paymentCard)
                             ? Repository.selectedItemColor(context)
-                            : Colors.white.withOpacity(0.5),
+                            : Colors.white.withValues(alpha: 0.5),
                       ),
                     )
                   ],

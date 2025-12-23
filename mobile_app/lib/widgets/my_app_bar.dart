@@ -18,7 +18,7 @@ AppBar myAppBar({required String title, String? stringColor, required bool imply
     ) : const SizedBox(),
     actions: hasAction == true
     ? const [
-      Icon(IconlyBroken.Search),
+      Icon(IconlyBroken.search),
       Gap(15)
     ] : null,
   );
