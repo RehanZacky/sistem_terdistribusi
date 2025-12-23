@@ -1,7 +1,9 @@
-from sqlalchemy import Column, BigInteger, Integer, String, Numeric, DateTime, Boolean
-from sqlalchemy.sql import func
-from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
+
+from sqlalchemy import (BigInteger, Boolean, Column, DateTime, Integer,
+                        Numeric, String)
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.sql import func
 
 Base = declarative_base()
 

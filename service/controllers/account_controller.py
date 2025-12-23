@@ -1,10 +1,9 @@
 from decimal import Decimal
 
+from config.database import get_db
 from fastapi import APIRouter, Depends, HTTPException
+from models.m_portfolio_account import MPortfolioAccount
 from sqlalchemy.orm import Session
-
-from ..config.database import get_db
-from ..models.m_portfolio_account import MPortfolioAccount
 
 account_router = APIRouter()
 

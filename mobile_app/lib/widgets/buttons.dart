@@ -29,7 +29,7 @@ Widget outlinedButton({required BuildContext context, required VoidCallback call
       elevation: 0,
       side: BorderSide(color: Colors.grey.shade400, width: 1),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(getProportionateScreenWidth(10))),
-      padding: EdgeInsets.symmetric(vertical: 13, horizontal: 15),
+      padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
     ),
   );
 }

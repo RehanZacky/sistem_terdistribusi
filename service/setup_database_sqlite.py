@@ -4,16 +4,19 @@ Membuat database SQLite dan mengisi data dummy untuk testing
 Tidak perlu PostgreSQL - cocok untuk development dan testing
 """
 
-from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker
+import os
 from datetime import datetime
 from decimal import Decimal
-import os
 
 # Import models
-from models.m_customer import MCustomer, Base as CustomerBase
-from models.m_portfolio_account import MPortfolioAccount, Base as AccountBase
-from models.t_transaction import TTransaction, Base as TransactionBase
+from models.m_customer import Base as CustomerBase
+from models.m_customer import MCustomer
+from models.m_portfolio_account import Base as AccountBase
+from models.m_portfolio_account import MPortfolioAccount
+from models.t_transaction import Base as TransactionBase
+from models.t_transaction import TTransaction
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker
 
 # SQLite database file
 DB_FILE = "ebanking.db"

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_app/generated/assets.dart';
 import 'package:flutter_banking_app/repo/repository.dart';

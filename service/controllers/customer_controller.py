@@ -1,8 +1,7 @@
+from config.database import get_db
 from fastapi import APIRouter, Depends, HTTPException
+from models.m_customer import MCustomer
 from sqlalchemy.orm import Session
-
-from ..config.database import get_db
-from ..models.m_customer import MCustomer
 
 customer_router = APIRouter()
 

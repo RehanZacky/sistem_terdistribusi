@@ -1,16 +1,14 @@
+import 'dart:math' as math;
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_banking_app/generated/assets.dart';
 import 'package:flutter_banking_app/repo/repository.dart';
 import 'package:flutter_banking_app/utils/size_config.dart';
-import 'package:flutter_banking_app/utils/styles.dart';
 import 'package:flutter_banking_app/widgets/buttons.dart';
 import 'package:flutter_banking_app/widgets/my_app_bar.dart';
 import 'package:flutter_banking_app/widgets/people_slider.dart';
 import 'package:gap/gap.dart';
-import 'dart:math' as math;
 
 class SendMoney extends StatefulWidget {
   const SendMoney({Key? key}) : super(key: key);
@@ -97,7 +95,7 @@ class _SendMoneyState extends State<SendMoney> {
                       shape: BoxShape.circle,
                       color: Repository.headerColor2(context),
                     ),
-                    child: Icon(Icons.keyboard_backspace_rounded, color: Colors.white.withOpacity(0.5), size: 18),
+                    child: Icon(Icons.keyboard_backspace_rounded, color: Colors.white.withValues(alpha: 0.5), size: 18),
                   ),
                 ),
               ),
@@ -194,11 +192,11 @@ class _SendMoneyState extends State<SendMoney> {
       children: [
         Text(title.toUpperCase(),
             style:
-                TextStyle(fontSize: 11, color: Colors.white.withOpacity(0.5))),
+                TextStyle(fontSize: 11, color: Colors.white.withValues(alpha: 0.5))),
         const Gap(2),
         Text(subtitle,
             style:
-                TextStyle(fontSize: 16, color: Colors.white.withOpacity(0.8))),
+                TextStyle(fontSize: 16, color: Colors.white.withValues(alpha: 0.8))),
       ],
     );
   }

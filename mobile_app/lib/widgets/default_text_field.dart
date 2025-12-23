@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_app/repo/repository.dart';
 import 'package:flutter_banking_app/utils/input_decoration.dart';
 import 'package:flutter_banking_app/utils/size_config.dart';
-import 'package:flutter_banking_app/utils/styles.dart';
 import 'package:gap/gap.dart';
 
 class DefaultTextField extends StatelessWidget {

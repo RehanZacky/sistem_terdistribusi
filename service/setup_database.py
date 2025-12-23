@@ -3,16 +3,19 @@ Database Setup Script
 Membuat tabel dan mengisi data dummy untuk testing
 """
 
-from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker
+import os
 from datetime import datetime
 from decimal import Decimal
-import os
 
 # Import models
-from models.m_customer import MCustomer, Base as CustomerBase
-from models.m_portfolio_account import MPortfolioAccount, Base as AccountBase
-from models.t_transaction import TTransaction, Base as TransactionBase
+from models.m_customer import Base as CustomerBase
+from models.m_customer import MCustomer
+from models.m_portfolio_account import Base as AccountBase
+from models.m_portfolio_account import MPortfolioAccount
+from models.t_transaction import Base as TransactionBase
+from models.t_transaction import TTransaction
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker
 
 # Database configuration
 DB_USER = os.getenv("DB_USER", "postgres")

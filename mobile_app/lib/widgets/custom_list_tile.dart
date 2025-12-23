@@ -43,8 +43,8 @@ class CustomListTile extends StatelessWidget {
       trailing: isDarkMode == true
           ? CupertinoSwitch(
         thumbColor: Styles.blueColor,
-        activeColor: Repository.activeColor(context),
-        trackColor: Repository.activeColor(context),
+        activeTrackColor: Repository.activeColor(context),
+        inactiveTrackColor: Repository.activeColor(context),
         value: vm.isDark,
         onChanged: (v) {
           vm.setPref(v);

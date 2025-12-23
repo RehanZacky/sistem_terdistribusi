@@ -1,6 +1,10 @@
 class ApiConfig {
   // Base URL untuk Service API
-  static const String baseUrl = 'http://localhost:8000';
+  // Gunakan 127.0.0.1 untuk Chrome/Web atau IP komputer untuk mobile device
+  static const String baseUrl = 'http://127.0.0.1:8000';
+  
+  // Alternative: Jika run di mobile device fisik, ganti dengan IP komputer
+  // Contoh: static const String baseUrl = 'http://192.168.1.10:8000';
   
   // Endpoints
   static const String verifyCustomer = '/internal/customer/verify';

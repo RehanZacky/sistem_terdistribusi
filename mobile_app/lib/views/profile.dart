@@ -1,15 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_app/generated/assets.dart';
 import 'package:flutter_banking_app/json/shortcut_list.dart';
 import 'package:flutter_banking_app/repo/repository.dart';
-import 'package:flutter_banking_app/widgets/custom_list_tile.dart';
 import 'package:flutter_banking_app/utils/iconly/iconly_bold.dart';
-import 'package:flutter_banking_app/utils/styles.dart';
-import 'package:flutter_banking_app/view_models/view_models.dart';
+import 'package:flutter_banking_app/widgets/custom_list_tile.dart';
 import 'package:flutter_banking_app/widgets/my_app_bar.dart';
 import 'package:gap/gap.dart';
-import 'package:provider/provider.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);

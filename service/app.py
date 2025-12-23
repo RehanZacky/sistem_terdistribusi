@@ -1,11 +1,10 @@
+# Import Routers
+from controllers.account_controller import account_router
+from controllers.customer_controller import customer_router
+from controllers.transaction_controller import transaction_router
+from controllers.transfer_controller import transfer_router
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
-# Import Routers
-from .controllers.customer_controller import customer_router
-from .controllers.account_controller import account_router
-from .controllers.transaction_controller import transaction_router
-from .controllers.transfer_controller import transfer_router
 
 app = FastAPI(
     title="Service Layer API",

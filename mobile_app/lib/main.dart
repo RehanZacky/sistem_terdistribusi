@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_app/utils/styles.dart';
-import 'package:flutter_banking_app/view_models/view_models.dart';
-import 'package:flutter_banking_app/widgets/bottom_nav.dart';
 import 'package:provider/provider.dart';
+
+import 'providers/session_provider.dart';
+import 'screens/dashboard_page.dart';
+import 'screens/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,22 +12,25 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => ViewModel())
-      ],
+    return ChangeNotifierProvider(
+      create: (_) => SessionProvider(),
       child: MaterialApp(
-        title: 'Flutter Banking App',
+        title: 'Mobile Banking',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'DMSans',
-          primaryColor: Styles.primaryColor,
-          scaffoldBackgroundColor: Styles.primaryColor,
+          primaryColor: const Color(0xFF1E1E2C),
+          scaffoldBackgroundColor: const Color(0xFF1E1E2C),
         ),
-        home: const BottomNav(),
+        home: Consumer<SessionProvider>(
+          builder: (context, session, _) {
+            return session.isLoggedIn 
+                ? const DashboardPage() 
+                : const LoginPage();
+          },
+        ),
       ),
     );
   }
