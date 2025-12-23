@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../models/user_session.dart';
 import '../providers/session_provider.dart';
+import '../utils/api_config.dart';
 import '../utils/api_service.dart';
 
 class LoginPage extends StatefulWidget {
@@ -23,6 +24,230 @@ class _LoginPageState extends State<LoginPage> {
     _usernameController.dispose();
     _pinController.dispose();
     super.dispose();
+  }
+
+  Future<void> _showIpConfigDialog() async {
+    final urlController = TextEditingController(text: ApiConfig.baseUrl);
+    String? dialogError;
+    String? dialogSuccess;
+
+    await showDialog(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setDialogState) {
+          return AlertDialog(
+            backgroundColor: const Color(0xFF2A2A3C),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            title: const Row(
+              children: [
+                Icon(Icons.settings, color: Colors.blueAccent),
+                SizedBox(width: 8),
+                Text(
+                  'Konfigurasi IP Server',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+              ],
+            ),
+            content: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Info Box
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.blueAccent.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.blueAccent.withValues(alpha: 0.3)),
+                    ),
+                    child: const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '💡 Tips:',
+                          style: TextStyle(
+                            color: Colors.blueAccent,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
+                        ),
+                        SizedBox(height: 6),
+                        Text(
+                          '• Lokal: http://127.0.0.1:8000\n'
+                          '• HP Fisik: http://192.168.x.x:8000\n'
+                          '• Pastikan backend berjalan\n'
+                          '• Harus di WiFi yang sama',
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 12,
+                            height: 1.4,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  // URL Input
+                  TextField(
+                    controller: urlController,
+                    style: const TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      labelText: 'Base URL',
+                      labelStyle: const TextStyle(color: Colors.white70),
+                      hintText: 'http://192.168.1.10:8000',
+                      hintStyle: const TextStyle(color: Colors.white38),
+                      prefixIcon: const Icon(Icons.link, color: Colors.blueAccent, size: 20),
+                      filled: true,
+                      fillColor: const Color(0xFF1E1E2C),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Colors.blueAccent, width: 2),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  // Success/Error Messages
+                  if (dialogSuccess != null)
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.green.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.greenAccent),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.check_circle, color: Colors.greenAccent, size: 18),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              dialogSuccess!,
+                              style: const TextStyle(color: Colors.greenAccent, fontSize: 12),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  if (dialogError != null)
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.red.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.red),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.error, color: Colors.red, size: 18),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              dialogError!,
+                              style: const TextStyle(color: Colors.red, fontSize: 12),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () async {
+                  setDialogState(() {
+                    dialogError = null;
+                    dialogSuccess = null;
+                  });
+                  try {
+                    await ApiConfig.resetToDefault();
+                    urlController.text = ApiConfig.baseUrl;
+                    setDialogState(() {
+                      dialogSuccess = '✅ URL direset ke default!';
+                    });
+                    // Clear success message after 2 seconds
+                    Future.delayed(const Duration(seconds: 2), () {
+                      if (context.mounted) {
+                        setDialogState(() {
+                          dialogSuccess = null;
+                        });
+                      }
+                    });
+                  } catch (e) {
+                    setDialogState(() {
+                      dialogError = 'Error: $e';
+                    });
+                  }
+                },
+                child: const Text(
+                  'Reset Default',
+                  style: TextStyle(color: Colors.orangeAccent),
+                ),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text(
+                  'Batal',
+                  style: TextStyle(color: Colors.white70),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  final url = urlController.text.trim();
+                  if (url.isEmpty) {
+                    setDialogState(() {
+                      dialogError = 'URL tidak boleh kosong';
+                      dialogSuccess = null;
+                    });
+                    return;
+                  }
+                  if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    setDialogState(() {
+                      dialogError = 'URL harus dimulai dengan http:// atau https://';
+                      dialogSuccess = null;
+                    });
+                    return;
+                  }
+                  try {
+                    await ApiConfig.setBaseUrl(url);
+                    setDialogState(() {
+                      dialogSuccess = '✅ URL berhasil disimpan!';
+                      dialogError = null;
+                    });
+                    // Auto close after success
+                    Future.delayed(const Duration(seconds: 1), () {
+                      if (context.mounted) {
+                        Navigator.pop(context);
+                      }
+                    });
+                  } catch (e) {
+                    setDialogState(() {
+                      dialogError = 'Error: $e';
+                      dialogSuccess = null;
+                    });
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueAccent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: const Text(
+                  'Simpan',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 
   Future<void> _handleLogin() async {
@@ -71,6 +296,17 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF1E1E2C),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF1E1E2C),
+        elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings, color: Colors.blueAccent),
+            tooltip: 'Konfigurasi IP Server',
+            onPressed: _showIpConfigDialog,
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(

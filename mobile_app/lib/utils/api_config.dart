@@ -1,10 +1,31 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
 class ApiConfig {
-  // Base URL untuk Service API
-  // Gunakan 127.0.0.1 untuk Chrome/Web atau IP komputer untuk mobile device
-  static const String baseUrl = 'http://127.0.0.1:8000';
+  // Default Base URL
+  static const String defaultBaseUrl = 'http://127.0.0.1:8000';
   
-  // Alternative: Jika run di mobile device fisik, ganti dengan IP komputer
-  // Contoh: static const String baseUrl = 'http://192.168.1.10:8000';
+  // Dynamic base URL that can be changed from settings
+  static String _baseUrl = defaultBaseUrl;
+  
+  static String get baseUrl => _baseUrl;
+  
+  // Initialize and load saved base URL
+  static Future<void> initialize() async {
+    final prefs = await SharedPreferences.getInstance();
+    _baseUrl = prefs.getString('base_url') ?? defaultBaseUrl;
+  }
+  
+  // Save new base URL
+  static Future<void> setBaseUrl(String url) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('base_url', url);
+    _baseUrl = url;
+  }
+  
+  // Reset to default
+  static Future<void> resetToDefault() async {
+    await setBaseUrl(defaultBaseUrl);
+  }
   
   // Endpoints
   static const String verifyCustomer = '/internal/customer/verify';

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/session_provider.dart';
 import 'balance_page.dart';
 import 'history_page.dart';
+import 'settings_page.dart';
 import 'transfer_page.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -86,6 +87,16 @@ class _DashboardPageState extends State<DashboardPage> {
         backgroundColor: const Color(0xFF2A2A3C),
         elevation: 0,
         actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingsPage()),
+              );
+            },
+            tooltip: 'Pengaturan',
+          ),
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: _handleLogout,

@@ -4,8 +4,11 @@ import 'package:provider/provider.dart';
 import 'providers/session_provider.dart';
 import 'screens/dashboard_page.dart';
 import 'screens/login_page.dart';
+import 'utils/api_config.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await ApiConfig.initialize(); // Initialize API config from saved settings
   runApp(const MyApp());
 }
 
