@@ -104,12 +104,26 @@ def update_transaction_status(payload: dict, db: Session = Depends(get_db)):
 # ------------------------------------------------------
 @transaction_router.get("/history/{customer_id}")
 def get_transaction_history(customer_id: int, db: Session = Depends(get_db)):
+    from models.m_portfolio_account import MPortfolioAccount
+
+    # Get all account numbers for this customer
+    customer_accounts = db.query(MPortfolioAccount).filter(
+        MPortfolioAccount.m_customer_id == customer_id
+    ).all()
+    
+    account_numbers = [acc.account_number for acc in customer_accounts]
+    
+    # Get transactions where customer is sender OR receiver
     history = db.query(TTransaction).filter(
-        TTransaction.m_customer_id == customer_id
+        (TTransaction.m_customer_id == customer_id) | 
+        (TTransaction.to_account_number.in_(account_numbers))
     ).order_by(TTransaction.created.desc()).all()
 
     data = []
     for trx in history:
+        # Determine if this is incoming or outgoing transaction
+        is_incoming = trx.to_account_number in account_numbers and trx.m_customer_id != customer_id
+        
         data.append({
             "transaction_id": trx.id,
             "type": trx.transaction_type,
@@ -117,7 +131,8 @@ def get_transaction_history(customer_id: int, db: Session = Depends(get_db)):
             "from": trx.from_account_number,
             "to": trx.to_account_number,
             "status": trx.status,
-            "date": trx.transaction_date
+            "date": trx.transaction_date,
+            "direction": "IN" if is_incoming else "OUT"  # New field
         })
 
     return {

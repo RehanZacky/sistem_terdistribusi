@@ -156,6 +156,7 @@ class _HistoryPageState extends State<HistoryPage> {
                               itemBuilder: (context, index) {
                                 final transaction = _transactions[index];
                                 final isSuccess = transaction.status == 'SUCCESS';
+                                final isIncoming = transaction.direction == 'IN';
 
                                 return Card(
                                   color: const Color(0xFF2A2A3C),
@@ -174,13 +175,13 @@ class _HistoryPageState extends State<HistoryPage> {
                                               padding: const EdgeInsets.all(8),
                                               decoration: BoxDecoration(
                                                 color: isSuccess
-                                                    ? Colors.green.withValues(alpha: 0.2)
+                                                    ? (isIncoming ? Colors.green.withValues(alpha: 0.2) : Colors.orange.withValues(alpha: 0.2))
                                                     : Colors.red.withValues(alpha: 0.2),
                                                 borderRadius: BorderRadius.circular(8),
                                               ),
                                               child: Icon(
-                                                isSuccess ? Icons.check_circle : Icons.cancel,
-                                                color: isSuccess ? Colors.green : Colors.red,
+                                                isIncoming ? Icons.arrow_downward : Icons.arrow_upward,
+                                                color: isSuccess ? (isIncoming ? Colors.green : Colors.orange) : Colors.red,
                                                 size: 24,
                                               ),
                                             ),
@@ -189,13 +190,33 @@ class _HistoryPageState extends State<HistoryPage> {
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(
-                                                    'Transaksi #${transaction.transactionId}',
-                                                    style: const TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 16,
-                                                      fontWeight: FontWeight.bold,
-                                                    ),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        'Transaksi #${transaction.transactionId}',
+                                                        style: const TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      const SizedBox(width: 8),
+                                                      Container(
+                                                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                                        decoration: BoxDecoration(
+                                                          color: isIncoming ? Colors.green.withValues(alpha: 0.3) : Colors.orange.withValues(alpha: 0.3),
+                                                          borderRadius: BorderRadius.circular(4),
+                                                        ),
+                                                        child: Text(
+                                                          isIncoming ? 'MASUK' : 'KELUAR',
+                                                          style: TextStyle(
+                                                            color: isIncoming ? Colors.greenAccent : Colors.orangeAccent,
+                                                            fontSize: 10,
+                                                            fontWeight: FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                   const SizedBox(height: 4),
                                                   Text(
@@ -209,9 +230,9 @@ class _HistoryPageState extends State<HistoryPage> {
                                               ),
                                             ),
                                             Text(
-                                              'Rp ${transaction.amount.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}',
+                                              '${isIncoming ? '+' : '-'} Rp ${transaction.amount.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}',
                                               style: TextStyle(
-                                                color: isSuccess ? Colors.greenAccent : Colors.redAccent,
+                                                color: isSuccess ? (isIncoming ? Colors.greenAccent : Colors.orangeAccent) : Colors.redAccent,
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold,
                                               ),

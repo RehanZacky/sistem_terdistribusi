@@ -61,6 +61,7 @@ class Transaction {
   final String to;
   final String status;
   final String date;
+  final String direction; // "IN" for incoming, "OUT" for outgoing
   
   Transaction({
     required this.transactionId,
@@ -70,6 +71,7 @@ class Transaction {
     required this.to,
     required this.status,
     required this.date,
+    this.direction = 'OUT', // Default to OUT for backward compatibility
   });
   
   factory Transaction.fromJson(Map<String, dynamic> json) {
@@ -81,6 +83,7 @@ class Transaction {
       to: json['to'] ?? '',
       status: json['status'],
       date: json['date'],
+      direction: json['direction'] ?? 'OUT',
     );
   }
 }
